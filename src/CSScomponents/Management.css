@@ -1,0 +1,57 @@
+
+.div-title {
+  background-color: #6b026b;
+  color: burlywood;
+  text-align: center;
+  padding: 30px 10px;
+}
+.title {
+  font-size: 4.5em;
+  margin-bottom: 10px;
+
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+.center-button {
+  display: flex;
+  justify-content: center; /* ממרכז את הכפתור לרוחב */
+}
+.button {
+  width: 300px;
+  padding: 10px 20px; /* ריווח פנימי */
+  font-size: 16px; /* גודל פונט */
+  cursor: pointer; /* הופך את סמן העכבר ליד */
+}
+.div-tables{
+  padding: 150px;
+}
+h2 {
+  direction: rtl;
+}
+table {
+  width: 100%;
+  
+  border-collapse: collapse;
+  margin-bottom: 20px; /* רווח בין הטבלאות */
+}
+
+th,
+td {
+  border: 2px solid #6b026b; /* גבולות תאים */
+  padding: 10px; /* ריווח פנימי */
+  text-align: right; /* יישור הטקסט לימין */
+}
+
+th {
+  background-color: #0b0a4b; /* צבע הרקע של הכותרות */
+  color: white; /* צבע הטקסט בכותרות */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* צבע רקע שורות זוגיות */
+}
+
+tr:hover {
+  background-color: #ddd; /* צבע רקע כשמעבירים את העכבר על השורה */
+}

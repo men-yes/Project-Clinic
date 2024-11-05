@@ -1,0 +1,31 @@
+/* עיצוב כולל עבור פס הניווט */
+.navbar {
+    background-color: #0b0a4b; /* צבע רקע */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל להבלטת הניווט */
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar a {
+    color: #fff; /* צבע טקסט */
+    text-decoration: none; /* הסרת קו תחתון */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.9s ease, color 0.3s ease;
+  }
+  
+  /* אפקט מעבר עכבר */
+  .navbar a:hover {
+    background-color: #6a167a; /* צבע רקע בעת מעבר עכבר */
+    color: #d4d4d4; /* שינוי צבע טקסט */
+  }
+  
+  .navbar a:active {
+    background-color: #827d85; /* צבע רקע כאשר לוחצים */
+  }
+  
+  
