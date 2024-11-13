@@ -6,12 +6,17 @@ import Contact from './Contact';
 import Articles from './Articles';
 import Footer from './Footer';
 import Header from './Header';
+import Specialization from './Specialization';
+import Therapists from './Therapists';
 
 const Home = () => {
    return (
       <div className="home-container">
         <Header />
         <Navbar />
+        
+        <Specialization />
+        <Therapists />
         <Articles />
         <Contact />
         <Footer />

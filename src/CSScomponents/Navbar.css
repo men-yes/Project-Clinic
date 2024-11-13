@@ -1,12 +1,19 @@
 /* עיצוב כולל עבור פס הניווט */
 .navbar {
     background-color: #0b0a4b; /* צבע רקע */
+    direction: rtl;
     padding: 15px 30px;
     display: flex;
     justify-content: center;
+    align-items: center ;
     gap: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל להבלטת הניווט */
     font-family: Arial, sans-serif;
+    position: sticky;
+    top: 0;
+    height: 50px;
+    z-index: 1000;
+    margin-bottom: 1px;
   }
   
   .navbar a {

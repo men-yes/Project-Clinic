@@ -1,0 +1,43 @@
+.div-specialization{
+    min-height: 500px;
+    background-color: #dcdcdd;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    justify-content: center;
+    padding:30px 60px;
+}
+.title-special{
+    font-size: 70px;
+    text-align: center;
+    margin-top: 50px;
+    color: #0b0a4b;
+    padding: 70px;
+    background-color: #dcdcdd;
+}
+.speciali1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .speciali2 {
+    width: 150px; /* גודל העיגול הפנימי */
+    height: 150px;
+    background-color: #0b0a4b; /* צבע כחול */
+    color: burlywood; /* צבע טקסט */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* הופך את הצורה לעיגול */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 0 10px #6b026b; /* גבול סגול חיצוני */
+    transition: transform 1.5s ease-in-out;
+  }
+  
+  /* אפקט בעת מעבר עכבר */
+  .speciali2:hover {
+    transform:  rotate(360deg); /* מגדיל מעט את העיגול בעת מעבר עכבר */
+  }

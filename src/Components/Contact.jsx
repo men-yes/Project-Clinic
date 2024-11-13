@@ -1,10 +1,10 @@
 import React from 'react'
-
+import '../CSScomponents/Contact.css'
 const Contact = () => {
   return (
-    <div>
-        
-        <div className='contact-us' id="contact-section">
+    <div id="contact-section" className='main-contact'>
+        <h1 className='title-contact'>צור קשר</h1>
+        <div className='contact-us' >
             <div className='contact-us2'> 
                <form action="">
                <label htmlFor="name">שם:</label>
@@ -19,7 +19,7 @@ const Contact = () => {
                <label htmlFor="message">הודעה:</label>
                <textarea id="message" name="message" rows="4" placeholder="כתוב את ההודעה שלך כאן" required></textarea>
 
-               <button type="submit">שלח</button>
+               <button className='button-contact' type="submit">שלח</button>
                </form>
             </div>
          </div>
@@ -27,4 +27,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default Contact;

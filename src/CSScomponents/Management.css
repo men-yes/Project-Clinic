@@ -17,12 +17,46 @@
   display: flex;
   justify-content: center; /* ממרכז את הכפתור לרוחב */
 }
-.button {
-  width: 300px;
-  padding: 10px 20px; /* ריווח פנימי */
+.button-manager {
+  background-color: #0b0a4b;
+  color: burlywood;
+  font-weight: bold;
+  border-radius:6px;
+  margin:10px 20px;
+  width: 200px;
+  padding: 10px 40px; /* ריווח פנימי */
   font-size: 16px; /* גודל פונט */
   cursor: pointer; /* הופך את סמן העכבר ליד */
 }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.modal-content input {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .div-tables{
   padding: 150px;
 }

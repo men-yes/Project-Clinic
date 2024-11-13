@@ -1,0 +1,43 @@
+ 
+ .main-therapists {
+    background-color: #e5d3e5;
+    padding: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #0b0a4b;
+    margin-top: 50px;
+  }
+ .title-therapists {
+  font-size: 70px;
+  text-align: center;
+  
+  color: #0b0a4b;
+  padding: 60px ;
+  }
+ 
+ .section-therapists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  
+  .div-therapist {
+    border: 1px solid #ddd;
+    padding: 60px;
+    width: 200px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  .div-therapist:hover{
+    transform: scale(1.1);
+  }
+  
+  .therapist-image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  

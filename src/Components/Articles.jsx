@@ -2,7 +2,8 @@ import React from 'react'
 
 const Articles = () => {
   return (
-    <div>
+    <div id="articles-section">
+       <h1 className="title-special">מאמרים ומידע</h1>
         <section className="nlp-section">
             <h2 className="subtitle">מה זה NLP?</h2>
             <p className="text">
