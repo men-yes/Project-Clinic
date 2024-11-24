@@ -5,6 +5,7 @@ import Header from "./Header";
 
 const Management = () => {
   const [managerAccess, setManagerAccess] = useState([]);
+  const [contactCustomer, setContactCustomer] = useState([]);
   const [showModal, setShowModal] = useState(false); // מראה או מסתיר את המודל
   const [therapistData, setTherapistData] = useState({
     name: "",
@@ -13,6 +14,14 @@ const Management = () => {
     phone_number: "",
   });
   const [therapistsList, setTherapistsList] = useState([]);
+
+  // בקשה לקבלת הלקוחות שפנו אלינו
+  useEffect(() => {
+    fetch("http://localhost:5000/contact-table")
+      .then((response) => response.json())
+      .then((data) => setContactCustomer(data))
+      .catch((error) => console.error("שגיאה בקבלת נתוני הלקוחות:", error));
+  }, []);
   // בקשה לקבלת המטפלים
   useEffect(() => {
     fetch("http://localhost:5000/therapists")
@@ -35,7 +44,6 @@ const Management = () => {
       [name]: value,
     }));
   };
-
   const handleAddTherapist = async () => {
     try {
       const response = await fetch("http://localhost:5000/addTherapist", {
@@ -72,29 +80,54 @@ const Management = () => {
         } else {
           alert("שגיאה במחיקת המטפל");
         }
-      },)
+      })
       .catch((error) => console.error("שגיאה במחיקת המטפל:", error));
   };
-  // () => {
-  //   const confirmDelete = window.confirm(`האם אתה בטוח שברצונך למחוק את המטפל/ת  ${therapist.name}?`);
-  //   if (!confirmDelete) {
-  //     // אם המשתמש לא מאשר, יוצאים מהפונקציה
-  //     return;
-  //   }
-  //   fetch( `http://localhost:5000/therapists/${therapist.therapist_id}`,
-  //     {method: "DELETE" })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         alert("המטפל נמחק בהצלחה");
-  //       } else {
-  //         alert("שגיאה במחיקת המטפל");
-  //       }
-  //     })
-  //     .catch((error) =>
-  //       console.error("שגיאה במחיקת המטפל:", error)
-  //     );
-  // }
+  const deleteCustomer = (id, name) => {
+    const confirmDelete = window.confirm(
+      `האם אתה בטוח שברצונך למחוק את המשתמש ${name}?`
+    );
+    if (!confirmDelete) return;
+    fetch(`http://localhost:5000/contact/${id}`, { method: "DELETE" })
+      .then((response) => {
+        if (response.ok) {
+          alert("הלקוח נמחק בהצלחה");
+          setContactCustomer((prevCurrent) =>
+            prevCurrent.filter((patient) => patient.id !== id)
+          );
+        } else {
+          alert("שגיאה במחיקת המטפל");
+        }
+      })
+      .catch((error) => console.error("שגיאה במחיקת המטפל:", error));
+  };
+  const handleCheck = (id, checked) => {
+    console.log(id);
+    const newChecked = !checked;
+    // שליחה לשרת לעדכון עמודת handled
+    fetch(`http://localhost:5000/contact/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ handled: newChecked ? 1 : 0 }),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("שגיאה בעדכון הסטטוס");
+        return response.json();
+      })
+      .then((data) => {
+        // alert("סטטוס עודכן בהצלחה");
+        console.log("סטטוס עודכן בהצלחה:", data);
 
+        setContactCustomer((prevContacts) =>
+          prevContacts.map((customer) =>
+              customer.id === id ? { ...customer, handled: newChecked ? 1 : 0 } : customer
+          )
+      );
+      })
+      .catch((error) => console.error("שגיאה בעדכון הסטטוס:", error));
+  };
 
   return (
     <div>
@@ -106,61 +139,44 @@ const Management = () => {
             הוסף מטפל
           </button>
         </section>
-        {/* מודל להוספת מטפל */}
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>הוספת מטפל חדש</h2>
-              <label>
-                שם המטפל:
-                <input
-                  type="text"
-                  name="name"
-                  value={therapistData.name}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <label>
-                התמחות:
-                <input
-                  type="text"
-                  name="specialization"
-                  value={therapistData.specialization}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <label>
-                אימייל:
-                <input
-                  type="email"
-                  name="email"
-                  value={therapistData.email}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <label>
-                מספר טלפון:
-                <input
-                  type="text"
-                  name="phone_number"
-                  value={therapistData.phone_number}
-                  onChange={handleInputChange}
-                />
-              </label>
 
-              <button className="button-manager" onClick={handleAddTherapist}>
-                בצע רישום
-              </button>
-              <button
-                className="button-manager"
-                onClick={() => setShowModal(false)}
-              >
-                בטל
-              </button>
-            </div>
-          </div>
-        )}
         <div className="div-tables">
+          <h2> ליצור קשר עם הלקוח </h2>
+          <table>
+            <thead>
+              <tr>
+                <th> /</th>
+                <th>  בקשה טופלה</th>
+                <th>סיבת הפנייה</th>
+                <th>נושא</th>
+                <th>טלפון</th>
+                <th>אימייל</th>
+                <th>שם</th>
+                <th>מספר</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contactCustomer.map((customer, index) => (
+                <tr key={customer.id}>
+                  <td><button onClick={() => deleteCustomer(customer.id, customer.name)}> מחק </button></td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={customer.handled === 1} // מציג כ'לחוץ' אם handled שווה ל-1
+                      onChange={() => handleCheck(customer.id, customer.handled)}
+                    />
+                  </td>
+                  <td>{customer.message}</td>
+                  <td>{customer.subject}</td>
+                  <td>{customer.phone_number}</td>
+                  <td>{customer.email}</td>
+                  <td>{customer.name}</td>
+                  <td>{index + 1}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
           <h2>נתוני מורשים</h2>
           <table>
             <thead>
@@ -207,7 +223,7 @@ const Management = () => {
                   <td>
                     <button
                       className="button-manager"
-                      onClick={()=> functionDelete(therapist.id,therapist.name)}
+                      onClick={() => functionDelete(therapist.id, therapist.name)}
                     >
                       הסר
                     </button>
@@ -223,6 +239,59 @@ const Management = () => {
             </tbody>
           </table>
         </div>
+        {/* מודל להוספת מטפל */}
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>הוספת מטפל חדש</h2>
+              <label>
+                שם המטפל:
+                <input
+                  type="text"
+                  name="name"
+                  value={therapistData.name}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                התמחות:
+                <input
+                  type="text"
+                  name="specialization"
+                  value={therapistData.specialization}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                אימייל:
+                <input
+                  type="email"
+                  name="email"
+                  value={therapistData.email}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                מספר טלפון:
+                <input
+                  type="text"
+                  name="phone_number"
+                  value={therapistData.phone_number}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <button className="button-manager" onClick={handleAddTherapist}>
+                בצע רישום
+              </button>
+              <button
+                className="button-manager"
+                onClick={() => setShowModal(false)}
+              >
+                בטל
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

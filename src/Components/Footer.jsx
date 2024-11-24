@@ -26,7 +26,7 @@ const Footer = () => {
           </div>
           <div className='footer-down'>
           <hr className="divider" />
-          <div>  maims כל הזכויות שמורות ©️   |  האתר נבנה ע"י סטודיו</div>
+          <div>  MAIMS כל הזכויות שמורות ©️   |  האתר נבנה ע"י סטודיו</div>
             </div>
         </footer>
     </div>

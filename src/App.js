@@ -7,6 +7,7 @@ import Contact from "./Components/Contact";
 import Specialization from "./Components/Specialization";
 import Therapists from "./Components/Therapists";
 import CurrentTherapist from "./Components/CurrentTherapist";
+import Calendar from "./Components/Calendar";
 function App() {
   
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Specialization" element={<Specialization/>}/>
         <Route path="/Therapists" element={<Therapists/>}/>
         <Route path="/CurrentTherapist" element={<CurrentTherapist/>}/>
+        <Route path="/Calendar" element={<Calendar/>}/>
         
           
         

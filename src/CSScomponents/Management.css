@@ -44,7 +44,8 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: 400px;
+  width: 50%;
+  /* height: 50%; */
   max-width: 90%;
   text-align: center;
 }
@@ -86,6 +87,6 @@ tr:nth-child(even) {
   background-color: #f2f2f2; /* צבע רקע שורות זוגיות */
 }
 
-tr:hover {
-  background-color: #ddd; /* צבע רקע כשמעבירים את העכבר על השורה */
-}
+/* tr:hover {
+  background-color: #d9cbdb; /* צבע רקע כשמעבירים את העכבר על השורה */
+/* } */ 
