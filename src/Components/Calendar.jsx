@@ -46,6 +46,8 @@ const Calendar = ({ therapistId,  patientId}) => {
       patientId:  patientId,
       appointmentDate: `${selectedDate}`,
       appointmentTime: `${hour}`,
+      title: 'פגישה עם מטופל', // שם הפגישה שיוצג בלוח
+      start: `${selectedDate}T${hour}:00`, // זמן התחלה
       status: 'scheduled', // סטטוס 'מתוזמן'
     };
      // שליחה לשרת על מנת לשמור את הפגישה
@@ -68,10 +70,20 @@ const Calendar = ({ therapistId,  patientId}) => {
     })
     .catch((error) => console.error('שגיאה בקביעת הפגישה:', error));
   };
+  // const isHourTaken = (hour) => {
+  //   const start = `${selectedDate}T${hour}`;
+  //   return Array.isArray(events) && events.some(
+  //     (event) => new Date(event.start).getTime() === new Date(start).getTime()
+  //   );
+  // };
+  
   const isHourTaken = (hour) => {
-    const start = `${selectedDate}T${hour}`;
+    const start = new Date(`${selectedDate}T${hour}:00`); // כולל פורמט מלא של זמן
     return Array.isArray(events) && events.some(
-      (event) => new Date(event.start).getTime() === new Date(start).getTime()
+      (event) => {
+        const eventDate = new Date(event.appointmentDate + 'T' + event.appointmentTime); 
+        return eventDate.getTime() === start.getTime();
+      }
     );
   };
   
