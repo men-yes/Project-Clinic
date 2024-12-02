@@ -19,6 +19,9 @@ const CurrentTherapist = () => {
 
   const location = useLocation();
   const therapistData = location.state?.therapistData;
+  
+  console.log(therapistData);
+  
   // const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/patients/${therapistData.id}`)
@@ -114,7 +117,7 @@ const CurrentTherapist = () => {
 
   return (
     <div>
-      <Header />
+      
       <section className="section-current-therapist">
         <h1>פרטי המטפל</h1>
         <p>שם: {therapistData.name}</p>
@@ -122,7 +125,6 @@ const CurrentTherapist = () => {
       </section>
          <div>
             <h1 className="title-table">מטופלים </h1>
-            <button>הוסף מטופל </button>
          </div>
       <table className="table-style">
         <thead>

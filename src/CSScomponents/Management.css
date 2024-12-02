@@ -16,6 +16,7 @@
 .center-button {
   display: flex;
   justify-content: center; /* ממרכז את הכפתור לרוחב */
+  margin-top: 100px;
 }
 .button-manager {
   background-color: #0b0a4b;
@@ -27,6 +28,15 @@
   padding: 10px 40px; /* ריווח פנימי */
   font-size: 16px; /* גודל פונט */
   cursor: pointer; /* הופך את סמן העכבר ליד */
+}
+.therapists-section {
+padding: 150px;
+padding-top: 150px;
+}
+.manager-section{
+  padding: 150px;
+  padding-top:300px;
+  padding-bottom: 300px;
 }
 .modal {
   position: fixed;
@@ -65,7 +75,7 @@ h2 {
   direction: rtl;
 }
 table {
-  width: 100%;
+  width: 80%;
   
   border-collapse: collapse;
   margin-bottom: 20px; /* רווח בין הטבלאות */

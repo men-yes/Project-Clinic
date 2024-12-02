@@ -29,11 +29,18 @@ const Navbar = () => {
       TherapistsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const scrollToHeader = () => {
+    const TherapistsSection = document.getElementById('home');
+    if (TherapistsSection) {
+      TherapistsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="navbar">
       <div >
-      <Link to="/Home">עמוד הבית</Link>
+      
+      <a onClick={scrollToHeader} style={{ cursor: 'pointer' }}>   עמוד ראשי  </a>
       <a onClick={scrollToTherapists} style={{ cursor: 'pointer' }}>  מטפלים מומחים  </a>
       <a onClick={scrollToSpecialization} style={{ cursor: 'pointer' }}>תחומי התמחות</a>
       <a onClick={scrollToArticles} style={{ cursor: 'pointer' }}>מאמרים ומידע</a>

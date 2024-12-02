@@ -11,7 +11,7 @@ import Therapists from './Therapists';
 
 const Home = () => {
    return (
-      <div className="home-container">
+      <div className="home-container" id='home'>
         <Header />
         <Navbar />
         
