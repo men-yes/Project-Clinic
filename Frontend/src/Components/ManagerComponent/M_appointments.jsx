@@ -21,7 +21,9 @@ useEffect(() => {
         <table className="table-style">
         <thead>
           <tr>
-            <th>אפשרויות</th>
+            <th>אפשרויות </th>
+            <th>הודעות </th>
+            <th>סוג טיפול </th>
             <th>מטפל </th>
             <th>אימייל</th>
             <th>טלפון</th>
@@ -39,15 +41,19 @@ useEffect(() => {
                   className="button-manager"
                 //   onClick={() => openCalendarModal(user.id)}
                 >
-                  קבע פגישה
+                   עדכון
                 </button>
               </td>
+              <td>
+               
+              </td>
               <td>{user.specialization}</td>
+              <td>{user.therapist_name}</td>
               <td>{user.email}</td>
               <td>{user.phone_number}</td>
               <td>{user.appointment_time}</td>
-              <td>{user.appointment_date}</td>
-              <td>{user.name}</td>
+              <td>{new Date(user.appointment_date).toLocaleDateString('he-IL')}</td>
+              <td>{user.patient_name}</td>
               <td>{index + 1}</td>
             </tr>
           ))}

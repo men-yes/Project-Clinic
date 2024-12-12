@@ -1,9 +1,7 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
-import Header from "./Header";
+import { Link } from "react-router-dom";
 import Calendar from "./Calendar";
 import "../CSScomponents/CurrentTherapist.css";
 
@@ -19,9 +17,9 @@ const CurrentTherapist = () => {
 
   const location = useLocation();
   const therapistData = location.state?.therapistData;
-  
+
   console.log(therapistData);
-  
+
   // const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/patients/${therapistData.id}`)
@@ -117,15 +115,21 @@ const CurrentTherapist = () => {
 
   return (
     <div>
-      
       <section className="section-current-therapist">
-        <h1>פרטי המטפל</h1>
-        <p>שם: {therapistData.name}</p>
-        <p>התמחות: {therapistData.specialization}</p>
+        <div>
+          <h2>{therapistData.name}</h2>
+          <h4>{therapistData.specialization}</h4>
+        </div>
+        <h1 className="title-table">מטופלים </h1>
+        <div className="actions-container">
+          <button className="profile-button">פרופיל</button>
+          <Link to="/Home" className="logout-link">
+            Log-out
+          </Link>
+        </div>
       </section>
-         <div>
-            <h1 className="title-table">מטופלים </h1>
-         </div>
+
+  <div className="table-container">
       <table className="table-style">
         <thead>
           <tr>
@@ -174,87 +178,97 @@ const CurrentTherapist = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+       </table>
+      </div>
+      
+ {showCalendarModal && (
+   <div className="modal">
+      <div className="modal-content">
+          <button onClick={closeCalendarModal} className="close-button">
+           Close
+          </button>
+          <Calendar
+            therapistId={therapistData.id}
+            patientId={selectedPatientId}
+            closeCalendar={closeCalendarModal}
+          />
+      </div>
+  </div>
+)}
 
-      {showCalendarModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <button onClick={closeCalendarModal} className="close-button">
-              Close
-            </button>
-            <Calendar
-              therapistId={therapistData.id}
-              patientId={selectedPatientId}
-              closeCalendar={closeCalendarModal}
-            />
-          </div>
-        </div>
+{showModal && (
+  <div className="medical-records-modal">
+    <div className="medical-records-modal-content">
+      <button onClick={closeModal} className="close-button">
+        סגור
+      </button>
+      <h2 className="medical-records-title">תיק רפואי</h2>
+      {medicalRecords && medicalRecords.length > 0 ? (
+        <table className="medical-records-table">
+          <thead>
+            <tr>
+              <th>תאריך דוח</th>
+              <th>תאריך טיפול</th>
+              <th>סיכום טיפול</th>
+            </tr>
+          </thead>
+          <tbody>
+            {medicalRecords.map((record) => (
+              <tr key={record.record_id}>
+                <td>
+                  {new Date(record.report_date).toLocaleDateString()}
+                </td>
+                <td>
+                  {new Date(record.treatment_date).toLocaleDateString()}
+                </td>
+                <td>{record.treatment_summary}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="no-data-message">אין עדיין נתונים להצגה</p>
       )}
+    </div>
+  </div>
+)}
 
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <button onClick={closeModal} className="close-button">
-              סגור
-            </button>
-            <h2>תיק רפואי</h2>
-            {medicalRecords && medicalRecords.length > 0 ? (
-              <table>
-                <thead>
-                  <tr>
-                    <th>תאריך דוח</th>
-                    <th>תאריך טיפול</th>
-                    <th>סיכום טיפול</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {medicalRecords.map((record) => (
-                    <tr key={record.record_id}>
-                      <td>
-                        {new Date(record.report_date).toLocaleDateString()}
-                      </td>
-                      <td>
-                        {new Date(record.treatment_date).toLocaleDateString()}
-                      </td>
-                      <td>{record.treatment_summary}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>אין עדיין נתונים להצגה</p>
-            )}
-          </div>
-        </div>
-      )}
+{showReportModal && (
+  <div className="add-report-modal">
+    <div className="add-report-modal-content">
+      <h2 className="add-report-title">הוסף דוח חדש</h2>
+      <label className="report-label">
+        תאריך טיפול:
+        <input
+          type="date"
+          className="report-input"
+          value={treatment_date}
+          onChange={(e) => setTreatment_date(e.target.value)}
+        />
+      </label>
+      <label className="report-label">
+        סיכום טיפול:
+        <textarea
+          className="report-textarea"
+          value={treatmentSummary}
+          onChange={(e) => setTreatmentSummary(e.target.value)}
+        ></textarea>
+      </label>
+      <div className="add-report-actions">
+        <button className="save-button" onClick={submitReport}>
+          שמור דוח
+        </button>
+        <button className="cancel-button" onClick={closeReportModal}>
+          בטל
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
-      {showReportModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>הוסף דוח חדש</h2>
-            <label>
-              תאריך טיפול:
-              <input
-                type="date"
-                value={treatment_date}
-                onChange={(e) => setTreatment_date(e.target.value)}
-              />
-            </label>
-            <label>
-              סיכום טיפול:
-              <textarea
-                value={treatmentSummary}
-                onChange={(e) => setTreatmentSummary(e.target.value)}
-              ></textarea>
-            </label>
-            <button onClick={submitReport}>שמור דוח</button>
-            <button onClick={closeReportModal}>בטל</button>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 };
 
 export default CurrentTherapist;
-

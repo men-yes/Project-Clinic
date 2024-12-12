@@ -38,15 +38,13 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div >
-      
       <a onClick={scrollToHeader} style={{ cursor: 'pointer' }}>   עמוד ראשי  </a>
       <a onClick={scrollToTherapists} style={{ cursor: 'pointer' }}>  מטפלים מומחים  </a>
       <a onClick={scrollToSpecialization} style={{ cursor: 'pointer' }}>תחומי התמחות</a>
       <a onClick={scrollToArticles} style={{ cursor: 'pointer' }}>מאמרים ומידע</a>
       <a onClick={scrollToContact} style={{ cursor: 'pointer' }}>צור קשר</a>
       <Link to="/Login">כניסת מנהל / מטפל</Link>
-      </div>
+      
     </div>
   )
 }

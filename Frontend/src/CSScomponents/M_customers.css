@@ -1,0 +1,28 @@
+.circle-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* גובה הקופסה */
+  }
+  
+  .circle-button {
+    background-color: #0b0a4b;
+    color: burlywood;
+    border: none;
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.5s ease, background-color 1.3s ease;
+  }
+  
+  .circle-button:hover {
+    background-color: #6b026b;
+    transform: scale(1.2);
+  }
+  

@@ -75,7 +75,7 @@ h2 {
   direction: rtl;
 }
 table {
-  width: 80%;
+  width: 90%;
   
   border-collapse: collapse;
   margin-bottom: 20px; /* רווח בין הטבלאות */
@@ -97,6 +97,99 @@ tr:nth-child(even) {
   background-color: #f2f2f2; /* צבע רקע שורות זוגיות */
 }
 
-/* tr:hover {
-  background-color: #d9cbdb; /* צבע רקע כשמעבירים את העכבר על השורה */
-/* } */ 
+/* עיצוב המודל */
+.add-patient-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-patient-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* כותרת המודל */
+.add-patient-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* פרטי המטופל */
+.add-patient-details {
+  margin-bottom: 20px;
+  direction: rtl;
+}
+
+.add-patient-detail {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* בחירת מטפל */
+.add-patient-therapist-selection {
+  margin-bottom: 20px;
+  
+}
+
+.therapist-label {
+  font-weight: bold;
+  margin-right: 5px;
+  
+}
+
+.therapist-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: right;
+}
+
+/* כפתורים */
+.add-patient-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirm-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cancel-button:hover {
+  background-color: #e53935;
+}
+

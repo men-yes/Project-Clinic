@@ -1,0 +1,180 @@
+.section-current-therapist {
+   width: 100%;
+    background-color: #e5d3e5;
+    padding: 15px;
+    direction: rtl;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #0b0a4b;
+    border-radius: 8px;
+  }
+  .section-current-therapist h1 {
+    font-size: 3.0rem;
+    margin-bottom: 5px;
+  }
+  .section-current-therapist p {
+    margin: 3px 0;
+    color: #4a4a4a;
+  }
+  .actions-container {
+    display: flex;
+    gap: 10px; /* רווח בין הכפתורים */
+    align-items: center;
+  }
+  .profile-button {
+    background-color: #6a1b9a;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .profile-button:hover {
+    background-color: #4a148c;
+  }
+  .logout-link {
+    text-decoration: none;
+    color: #6a1b9a;
+    font-weight: bold;
+    border: 1px solid #6a1b9a;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .logout-link:hover {
+    background-color: #6a1b9a;
+    color: #fff;
+  }
+  .table-container{
+    width: 100vw;
+    margin-top: 100px;
+  }
+.table-style{
+    width: 100%;
+    text-align: center;
+    align-items: center;
+
+}
+
+
+/* עיצוב מודאל בסיסי */
+.medical-records-modal,
+.add-report-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.medical-records-modal-content,
+.add-report-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%; /* מתאימה לרוחב המסך */
+  max-width: 900px; /* מגבלת רוחב */
+  max-height: 80vh; /* מגבלת גובה */
+  overflow: auto; /* גלילה עבור תוכן שיוצא מהמודאל */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* כותרת */
+.medical-records-title,
+.add-report-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* טבלה */
+.medical-records-table {
+  width: 100%;
+  border-collapse: collapse;
+ 
+  table-layout: fixed; /* התאמה אוטומטית לגודל הקבוע */
+}
+
+.medical-records-table th,
+.medical-records-table td {
+  border: 1px solid #6a1b9a;
+  padding: 10px;
+  text-align: center;
+  word-wrap: break-word; /* שבירת מילים ארוכות */
+  white-space: normal; /* שבירת שורות עבור טקסט */
+}
+
+.medical-records-table th {
+  background-color: #0b0a4b;
+  font-weight: bold;
+}
+
+.no-data-message {
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+}
+
+/* תוויות ושדות */
+.report-label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.report-input,
+.report-textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* כפתורים */
+.add-report-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.save-button {
+  background-color: #0b0a4b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.save-button:hover {
+  background-color: #3d4e7f;
+}
+
+.cancel-button,
+.close-button {
+  background-color:#6a1b9a;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cancel-button:hover,
+.close-button:hover {
+  background-color: #574361;
+}
